@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currently Posting</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <meta name="color-scheme" content="light dark">
+
+    <link id="favicon-light" rel="shortcut icon" type="image/x-icon" rel="icon" href="img/share-square-black.svg" media="(prefers-color-scheme: light)">
+    <link id="favicon-dark" rel="shortcut icon" type="image/x-icon" rel="icon" href="img/share-square-white.svg" media="(prefers-color-scheme: dark)">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+<body>
+
+    <nav>
+        <h1><i class="fa-regular fa-share-from-square"></i> Currently Posting</h1>
+
+        <div class="nav-links">
+            <!-- <a href="">About</a> -->
+            <!-- <a href="">Pricing</a>
+            <a href="">Help</a> -->
+        </div>
+    </nav>
+
+<main>
+
+<section>
+    <h1>Generate Content</h1>
+
+    <label for="type">Are you reading or watching?</label>
+    <select id="type" onchange="updateForm()">
+        <option value="reading">Reading</option>
+        <option value="watching">Watching</option>
+    </select>
+
+    <label for="title">Enter title</label>
+    <input type="text" id="title" placeholder="Start typing..." oninput="fetchDetails()">
+
+    <label id="authorLabel" for="author">Author</label>
+    <input type="text" id="author" disabled>
+
+    <label id="pagesLabel" for="pages">Total Pages</label>
+    <input type="text" id="pages" disabled>
+
+    <label id="progressLabel" for="progress">How far into it are you?</label>
+    <input type="number" id="progress" placeholder="e.g., Page 100" oninput="calculateProgress()">
+
+    <p id="progressPercentage"></p>
+
+    <label for="thoughts">Thoughts?</label>
+    <textarea id="thoughts" placeholder="Share your thoughts"></textarea>
+
+    <label for="rating">Rating (out of 5)</label>
+    <input type="number" id="rating" min="1" max="5">
+
+    <div id="coverOptions">
+        <label for="coverChoice">Cover Options</label>
+        <select id="coverChoice" onchange="toggleCoverOption()">
+            <option value="auto">Use Found Image</option>
+            <option value="custom">Upload Custom Image</option>
+            <option value="link">Use a Book Link Instead</option>
+        </select>
+
+        <div id="autoCover">
+            <img id="coverImage" src="" alt="Cover will appear here">
+        </div>
+
+        <div id="customCover" style="display: none;">
+            <label for="uploadCover">Upload Cover</label>
+            <input type="file" id="uploadCover" accept="image/*" onchange="previewCustomCover()">
+            <img id="customCoverPreview" src="" alt="Custom cover preview">
+        </div>
+
+        <div id="bookLink" style="display: none;">
+            <label for="bookUrl">Book Link</label>
+            <input type="url" id="bookUrl" placeholder="Paste a link to the book">
+        </div>
+    </div>
+
+    <button onclick="generatePost()">Generate Post</button>
+
+
+
+<div id="output"></div>
+</section>
+
+
+</main>
+
+
+    
+</body>
+<script src="js/generator.js"></script>
+</html>
